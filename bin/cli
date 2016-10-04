@@ -1,0 +1,58 @@
+#!/usr/bin/env node
+
+var glob = require('glob');
+var inquirer = require('inquirer');
+var iconmaker = require('../dist/iconmaker.js');
+var currentDir = process.cwd(), currentArray;
+
+currentArray = glob.sync(currentDir + '/*.png').map(function (file) {
+	return file.replace(currentDir + '/', '')
+}).concat(['Can\'t find the file?']);
+
+inquirer.prompt([
+	{
+		type: 'list',
+		message: 'Select size',
+		name: 'type',
+		choices: ['Android', 'iPhone+iPad', 'iPhone', 'iPad', 'WebApp'],
+		default: function () {
+			return 'iPhone+iPad'
+		}
+	},
+	{
+		type: 'list',
+		message: 'Select image file under the folder',
+		name: 'currentDirFile',
+		choices: currentArray
+	},
+	{
+		type: 'input',
+		message: 'Set original image file',
+		name: 'originalFile',
+		when: function (answers) {
+			return answers.currentDirFile == 'Can\'t find the file?'
+		}
+	},
+	{
+		type: 'input',
+		message: 'Set target path',
+		name: 'targetPath',
+		default: function () {
+			return 'Iconmaker'
+		}
+	},
+	{
+		type: 'input',
+		message: 'Quality of the output file',
+		name: 'quality',
+		default: function () {
+			return 100
+		}
+	}
+], function (answers, err) {
+	if (err) {
+		console.error(err);
+		return;
+	}
+	new iconmaker(answers);
+});

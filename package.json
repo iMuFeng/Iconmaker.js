@@ -1,0 +1,33 @@
+{
+  "name": "iconmaker",
+  "version": "0.0.11",
+  "description": "A simple icon maker",
+  "main": "dist/iconmaker.js",
+  "author": "mufeng <mufeng.me@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iMuFeng/Iconmaker.js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/iMuFeng/Iconmaker.js/issues"
+  },
+  "homepage": "https://github.com/iMuFeng/Iconmaker.js#readme",
+  "license": "MIT",
+  "bin": {
+    "iconmaker": "bin/cli"
+  },
+  "keywords": [
+    "iOS",
+    "iphone",
+    "ipad",
+    "webapp",
+    "icon"
+  ],
+  "dependencies": {
+    "colors": "^1.1.2",
+    "glob": "^7.0.3",
+    "gm": "^1.21.1",
+    "inquirer": "^0.12.0",
+    "jsonfile": "^2.2.3"
+  }
+}
