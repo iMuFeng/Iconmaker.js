@@ -1,6 +1,6 @@
 {
   "name": "iconmaker",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "A simple icon maker",
   "main": "dist/iconmaker.js",
   "author": "mufeng <mufeng.me@gmail.com>",
@@ -20,7 +20,10 @@
     "iOS",
     "iphone",
     "ipad",
-    "webapp",
+    "Android",
+    "Webapp",
+    "macOS",
+    "icns",
     "icon"
   ],
   "dependencies": {

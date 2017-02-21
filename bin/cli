@@ -12,9 +12,9 @@ currentArray = glob.sync(currentDir + '/*.png').map(function (file) {
 inquirer.prompt([
 	{
 		type: 'list',
-		message: 'Select size',
+		message: 'Select icon type',
 		name: 'type',
-		choices: ['Android', 'iPhone+iPad', 'iPhone', 'iPad', 'WebApp'],
+		choices: ['Android', 'iPhone+iPad', 'iPhone', 'iPad', 'macOS', 'WebApp'],
 		default: function () {
 			return 'iPhone+iPad'
 		}
@@ -39,14 +39,6 @@ inquirer.prompt([
 		name: 'targetPath',
 		default: function () {
 			return 'Iconmaker'
-		}
-	},
-	{
-		type: 'input',
-		message: 'Quality of the output file',
-		name: 'quality',
-		default: function () {
-			return 100
 		}
 	}
 ], function (answers, err) {

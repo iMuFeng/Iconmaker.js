@@ -18,13 +18,16 @@ iconmaker.prototype = {
 			this.sizes = sizes.android	
 		} else if (opts.type == 'WebApp') {
 			this.sizes = sizes.webapp
+		} else if (opts.type == 'macOS') {
+			this.sizes = sizes.macos
 		} else {
 			this.sizes = sizes.iphone.concat(sizes.ipad)
 		}
 		this.type = opts.type;
+		this.isMacOSType = opts.type == 'macOS';
 		this.originalFile = opts.originalFile || (process.cwd() + '/' + opts.currentDirFile);
-		this.targetPath = opts.targetPath || 'Iconmaker';
-		this.quality = this.isNumber(opts.quality) ? opts.quality : 100;
+		this.targetPath = opts.targetPath || process.cwd() + '/' + 'Iconmaker';
+		this.quality = 100;
 		if (!this.originalFile || this.originalFile.trim() == '') {
 			console.log(colors.red('[Error] Original file can\'t be empty.'));
 			return
@@ -40,10 +43,10 @@ iconmaker.prototype = {
 			} else {
 				return self.isFileExist(self.targetPath).then(function (exists) {
 					if (exists) {
-						return self.loop()
+						return this.isMacOSType ? self.loop() : self.toicns()
 					} else {
 						return self.mkdir(self.targetPath).then(function () {
-							return self.loop()
+							return this.isMacOSType ? self.loop() : self.toicns()
 						}).catch(function (err) {
 							console.log(colors.red('[Error] ', err))
 						})
@@ -142,8 +145,48 @@ iconmaker.prototype = {
 			})
 		})
 	},
-	isNumber: function (n) {
-		return !isNaN(parseFloat(n)) && isFinite(n)
+	toicns: function () {
+		var exec = require('child_process').exec;
+		var self = this;
+
+		exec('which sips', function(err, stdout, stderr) {
+			if (err) {
+				return console.log(colors.red('[Error] `sips` command not on system'));
+			}
+
+			var iconsetPath = self.targetPath + '/Iconmaker.iconset';
+
+			self.isFileExist(iconsetPath).then(function (exists) {
+				if (exists) {
+					return self.generateIcnsFiles()
+				} else {
+					return self.mkdir(iconsetPath).then(function () {
+						return self.generateIcnsFiles()
+					}).catch(function (err) {
+						console.log(colors.red('[Error] ', err))
+					})
+				}
+			}).catch(function (err) {
+				err && console.log(colors.red('[Error] ', err))
+			})
+		})
+	},
+	generateIcnsFiles: function () {
+		var exec = require('child_process').exec;
+		var self = this;
+		var iconsetPath = self.targetPath + '/Iconmaker.iconset';
+		self.sizes.forEach(function (val) {
+			var scale = parseFloat(val.scale),
+					width = parseInt(val.size.split('x')[0] * scale),
+					filename = val.filename;
+
+			exec('sips -z ' + width + ' ' + width + ' ' + self.originalFile + ' --out ' + iconsetPath + '/' + filename);		
+		});
+
+		exec('iconutil -c icns ' + iconsetPath, function(err, stdout, stderr) {
+			exec('rm -R ' + iconsetPath);
+		});
+		console.timeEnd('[Done]');
 	}
 };
 module.exports = iconmaker;
