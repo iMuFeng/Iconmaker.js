@@ -175,17 +175,19 @@ iconmaker.prototype = {
 		var exec = require('child_process').exec;
 		var self = this;
 		var iconsetPath = self.targetPath + '/Iconmaker.iconset';
+		var args = []
+
 		self.sizes.forEach(function (val) {
 			var scale = parseFloat(val.scale),
 					width = parseInt(val.size.split('x')[0] * scale),
 					filename = val.filename;
 
-			exec('sips -z ' + width + ' ' + width + ' ' + self.originalFile + ' --out ' + iconsetPath + '/' + filename);		
+			args.push('sips -z ' + width + ' ' + width + ' ' + self.originalFile + ' --out ' + iconsetPath + '/' + filename)	
 		});
+		args.push('iconutil -c icns ' + iconsetPath);
+		args.push('rm -R ' + iconsetPath);
 
-		exec('iconutil -c icns ' + iconsetPath, function(err, stdout, stderr) {
-			exec('rm -R ' + iconsetPath);
-		});
+		exec(args.join(' && '));
 		console.timeEnd('[Done]');
 	}
 };

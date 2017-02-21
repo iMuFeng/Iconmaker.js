@@ -243,7 +243,7 @@
       "scale": "1x"
     },
     {
-      "size": "32x32",
+      "size": "16x16",
       "idiom": "macos",
       "filename": "icon_16x16@2x.png",
       "scale": "2x"
@@ -255,7 +255,7 @@
       "scale": "1x"
     },
     {
-      "size": "64x64",
+      "size": "32x32",
       "idiom": "macos",
       "filename": "icon_32x32@2x.png",
       "scale": "2x"
@@ -267,7 +267,7 @@
       "scale": "1x"
     },
     {
-      "size": "256x256",
+      "size": "128x128",
       "idiom": "macos",
       "filename": "icon_128x128@2x.png",
       "scale": "2x"
@@ -279,7 +279,7 @@
       "scale": "1x"
     },
     {
-      "size": "512x512",
+      "size": "256x256",
       "idiom": "macos",
       "filename": "icon_256x256@2x.png",
       "scale": "2x"
@@ -291,7 +291,7 @@
       "scale": "1x"
     },
     {
-      "size": "1024x1024",
+      "size": "512x512",
       "idiom": "macos",
       "filename": "icon_512x512@2x.png",
       "scale": "2x"
