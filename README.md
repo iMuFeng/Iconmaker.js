@@ -25,7 +25,7 @@ You can also ignore the `targetPath` `quality` params which will automatically c
 
 ### MIT license
 
-Copyright (c) 2016 mufeng <mufeng.me@gmail.com>.
+Copyright (c) 2017 mufeng <mufeng.me@gmail.com>.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the &quot;Software&quot;), to deal
