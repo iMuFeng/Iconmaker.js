@@ -15,7 +15,7 @@ iconmaker.prototype = {
 		} else if (opts.type == 'iPad') {
 			this.sizes = sizes.ipad
 		} else if (opts.type == 'Android') {
-			this.sizes = sizes.android	
+			this.sizes = sizes.android
 		} else if (opts.type == 'WebApp') {
 			this.sizes = sizes.webapp
 		} else if (opts.type == 'macOS') {
@@ -24,7 +24,6 @@ iconmaker.prototype = {
 			this.sizes = sizes.iphone.concat(sizes.ipad)
 		}
 		this.type = opts.type;
-		this.isMacOSType = opts.type == 'macOS';
 		this.originalFile = opts.originalFile || (process.cwd() + '/' + opts.currentDirFile);
 		this.targetPath = opts.targetPath || process.cwd() + '/' + 'Iconmaker';
 		this.quality = 100;
@@ -43,10 +42,10 @@ iconmaker.prototype = {
 			} else {
 				return self.isFileExist(self.targetPath).then(function (exists) {
 					if (exists) {
-						return this.isMacOSType ? self.loop() : self.toicns()
+						return this.type != 'macOS' ? self.loop() : self.toicns()
 					} else {
 						return self.mkdir(self.targetPath).then(function () {
-							return this.isMacOSType ? self.loop() : self.toicns()
+							return this.type != 'macOS' ? self.loop() : self.toicns()
 						}).catch(function (err) {
 							console.log(colors.red('[Error] ', err))
 						})
@@ -182,7 +181,7 @@ iconmaker.prototype = {
 					width = parseInt(val.size.split('x')[0] * scale),
 					filename = val.filename;
 
-			args.push('sips -z ' + width + ' ' + width + ' ' + self.originalFile + ' --out ' + iconsetPath + '/' + filename)	
+			args.push('sips -z ' + width + ' ' + width + ' ' + self.originalFile + ' --out ' + iconsetPath + '/' + filename)
 		});
 		args.push('iconutil -c icns ' + iconsetPath);
 		args.push('rm -R ' + iconsetPath);
