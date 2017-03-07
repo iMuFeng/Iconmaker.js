@@ -42,10 +42,10 @@ iconmaker.prototype = {
 			} else {
 				return self.isFileExist(self.targetPath).then(function (exists) {
 					if (exists) {
-						return this.type != 'macOS' ? self.loop() : self.toicns()
+						return self.type != 'macOS' ? self.loop() : self.toicns()
 					} else {
 						return self.mkdir(self.targetPath).then(function () {
-							return this.type != 'macOS' ? self.loop() : self.toicns()
+							return self.type != 'macOS' ? self.loop() : self.toicns()
 						}).catch(function (err) {
 							console.log(colors.red('[Error] ', err))
 						})
@@ -185,6 +185,7 @@ iconmaker.prototype = {
 		});
 		args.push('iconutil -c icns ' + iconsetPath);
 		args.push('rm -R ' + iconsetPath);
+		args.push('rm -R ' + self.targetPath + '/*.png');
 
 		exec(args.join(' && '));
 		console.timeEnd('[Done]');
