@@ -1,6 +1,6 @@
 {
   "name": "iconmaker",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "description": "A simple icon maker",
   "main": "dist/iconmaker.js",
   "author": "mufeng <mufeng.me@gmail.com>",
