@@ -6,6 +6,15 @@ Iconmaker.js
 A simple icon maker
 
 ### Install
+
+First download and install GraphicsMagick. In Mac OS X, you can simply use Homebrew and do:
+
+```shell
+$ brew install graphicsmagick
+```
+
+Then install npm:
+
 ```shell
 $ npm install -g iconmaker
 ```
