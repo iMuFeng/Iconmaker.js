@@ -65,6 +65,12 @@
       "idiom": "iphone",
       "filename": "AppIcon60x60@3x.png",
       "scale": "3x"
+    },
+    {
+      "size" : "1024x1024",
+      "idiom" : "iphone",
+      "filename" : "AppIcon1024x1024.png",
+      "scale" : "1x"
     }
   ],
   "ipad": [
@@ -145,6 +151,12 @@
       "idiom": "ipad",
       "filename": "AppIcon83.5x83.5@2x.png",
       "scale": "2x"
+    },
+    {
+      "size" : "1024x1024",
+      "idiom" : "ipad",
+      "filename" : "AppIcon1024x1024.png",
+      "scale" : "1x"
     }
   ],
   "android": [
