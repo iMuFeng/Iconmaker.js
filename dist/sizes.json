@@ -76,13 +76,13 @@
   "ipad": [
     {
       "size": "20x20",
-      "idiom": "iphone",
+      "idiom": "ipad",
       "filename": "AppIcon20x20~iPad.png",
       "scale": "1x"
     },
     {
       "size": "20x20",
-      "idiom": "iphone",
+      "idiom": "ipad",
       "filename": "AppIcon20x20@2x~iPad.png",
       "scale": "2x"
     },
