@@ -1,6 +1,4 @@
-var gm = require('gm').subClass({
-	imageMagick: true
-});
+var sharp = require('sharp');
 var fs = require('fs');
 var jsonfile = require('jsonfile');
 var colors = require('colors/safe');
@@ -69,7 +67,7 @@ iconmaker.prototype = {
 			if (self.type == 'Android') {
 				var targetPath = self.targetPath + '/mipmap-' + val.idiom;
 				self.mkdir(targetPath).then(function () {
-					gm(self.originalFile).resize(width, width, '!').write(targetPath + '/' + filename, function (err) {
+					sharp(self.originalFile).resize(width, width).toFile(targetPath + '/' + filename, function (err) {
 						if (err) {
 							reject(err)
 						} else {
@@ -80,7 +78,7 @@ iconmaker.prototype = {
 					console.log(colors.red('[Error] ', err))
 				})
 			} else {
-				gm(self.originalFile).resize(width, width, '!').write(self.targetPath + '/' + filename, function (err) {
+				sharp(self.originalFile).resize(width, width).toFile(self.targetPath + '/' + filename, function (err) {
 					if (err) {
 						reject(err)
 					} else {
